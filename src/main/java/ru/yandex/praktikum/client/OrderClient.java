@@ -11,7 +11,7 @@ public class OrderClient extends RestClient{
     private static final String ORDERS = "/api/v1/orders";
     private static final String ORDER_CANCEL = "/api/v1/orders/cancel?track=";
 
-    public ValidatableResponse create(OrderRequest orderRequest) {
+    public ValidatableResponse createOrder(OrderRequest orderRequest) {
         return given()
                 .spec(getDefaultRequestSpec())
                 .body(orderRequest)

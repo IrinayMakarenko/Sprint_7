@@ -13,7 +13,7 @@ public class CourierClient extends RestClient {
     private static final String COURIER = "/api/v1/courier";
     private static final String COURIER_LOGIN = "/api/v1/courier/login";
 
-    public ValidatableResponse create(CourierRequest courierRequest) {
+    public ValidatableResponse createCourier(CourierRequest courierRequest) {
         return given()
                 .spec(getDefaultRequestSpec())
                 .body(courierRequest)

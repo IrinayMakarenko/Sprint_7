@@ -51,7 +51,7 @@ public class CreationOrderTest {
     @Test
     public void orderShouldBeCreated() {
         orderRequest = new OrderRequest("CaptainJack", "Sparrow", "Сaribbean sea, 7", "7", "+7 777 777 77 77", 1, "2022-11-15", "Where does rum always disappear to?", colour);
-        track = orderClient.create(orderRequest)
+        track = orderClient.createOrder(orderRequest)
                 .assertThat()
                 .statusCode(SC_CREATED)
                 .and()

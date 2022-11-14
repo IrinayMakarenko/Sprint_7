@@ -36,7 +36,7 @@ public class CreationCourierTest {
     @Test
     public void courierShouldBeCreated() {
 
-        courierClient.create(courierRequest)
+        courierClient.createCourier(courierRequest)
                 .assertThat()
                 .statusCode(SC_CREATED)
                 .and()
@@ -57,13 +57,13 @@ public class CreationCourierTest {
     @Test
     public void courierWithUniqueLoginShouldBeCreated() {
 
-        courierClient.create(courierRequest)
+        courierClient.createCourier(courierRequest)
                 .assertThat()
                 .statusCode(SC_CREATED)
                 .and()
                 .body("ok", equalTo(true));
 
-        courierClient.create(courierRequest)
+        courierClient.createCourier(courierRequest)
                 .assertThat()
                 .statusCode(SC_CONFLICT)
                 .and()
@@ -86,7 +86,7 @@ public class CreationCourierTest {
 
         courierRequest.setLogin("");
 
-        courierClient.create(courierRequest)
+        courierClient.createCourier(courierRequest)
                 .assertThat()
                 .statusCode(SC_BAD_REQUEST)
                 .and()
@@ -98,7 +98,7 @@ public class CreationCourierTest {
 
         courierRequest.setPassword("");
 
-        courierClient.create(courierRequest)
+        courierClient.createCourier(courierRequest)
                 .assertThat()
                 .statusCode(SC_BAD_REQUEST)
                 .and()

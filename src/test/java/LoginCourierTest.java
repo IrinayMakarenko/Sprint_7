@@ -22,7 +22,7 @@ public class LoginCourierTest {
         courierRequest = CourierGenerator.getDefaultCourier();
         courierClient = new CourierClient();
 
-        courierClient.create(courierRequest)
+        courierClient.createCourier(courierRequest)
                 .assertThat()
                 .statusCode(SC_CREATED)
                 .and()
@@ -32,14 +32,16 @@ public class LoginCourierTest {
     @After
     public void tearDown() {
 
-        loginRequest = CourierGenerator.getDefaultCourierLogin();
-        id = courierClient.login(loginRequest)
-                .assertThat()
-                .statusCode(SC_OK)
-                .and()
-                .body("id", Matchers.notNullValue())
-                .extract()
-                .path("id");
+        if (id == null) {
+            loginRequest = CourierGenerator.getDefaultCourierLogin();
+            id = courierClient.login(loginRequest)
+                    .assertThat()
+                    .statusCode(SC_OK)
+                    .and()
+                    .body("id", Matchers.notNullValue())
+                    .extract()
+                    .path("id");
+        }
 
         if (id != null) {
             courierClient.delete(id)
@@ -50,8 +52,17 @@ public class LoginCourierTest {
         }
     }
 
+
     @Test
     public void courierShouldBeAuthorized() {
+        loginRequest = CourierGenerator.getDefaultCourierLogin();
+        id = courierClient.login(loginRequest)
+                .assertThat()
+                .statusCode(SC_OK)
+                .and()
+                .body("id", Matchers.notNullValue())
+                .extract()
+                .path("id");
     }
 
     @Test
